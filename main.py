@@ -1,7 +1,8 @@
 from datetime import datetime
+from tracker import Tracker
 
 def strip_and_replace_in_line(line):
-    return [x.replace('\n', '').strip() for x in line]
+    return [x.replace("\n", "").strip() for x in line]
 
 
 def remove_spaces_in_line(line):
@@ -18,15 +19,23 @@ def parse_line(line):
 def read_file(file_name):
     try:
         with open(file_name) as f:
-            # i != 0 since we don't want to include the top row of log.txt. 
+            # i != 0 since we don't want to include the top row of log.txt.
             return [parse_line(line) for i, line in enumerate(f) if i != 0]
     except FileNotFoundError as e:
         e.strerror = "File does not exist!"
         raise e
 
+
 def main():
-    logs = read_file("log.txt") # => [[],[],...,[]]
-    pass
+    logs = read_file("log.txt")  # => [[],[],...,[]]
+
+    tracker = Tracker(logs)
+
+    tracker.filter_rows_by_date_range()
+
+    tracker.calculate_page_views()
+
+    tracker.calculate_unique_visits()
 
 
 if __name__ == "__main__":

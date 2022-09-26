@@ -1,4 +1,4 @@
-from main import read_file, parse_line
+from main import read_file, parse_line, add_page_views
 from datetime import datetime
 import pytest
 
@@ -27,3 +27,9 @@ def test_parse_line():
     line = "|2019-03-01 09:00:00UTC |/contact.html |12345 |"
     parsed_line = parse_line(line)
     assert parsed_line == FIRST_ROW
+
+
+def test_check_page_views():
+    urls = ["/contact.html", "/home.html", "/contact.html"]
+    data = add_page_views(urls)
+    assert data == {"/contact.html": {"page views": 2}, "/home.html": {"page views": 1}}
