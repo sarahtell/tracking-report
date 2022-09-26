@@ -11,13 +11,13 @@ FIRST_ROW = [
 
 
 def test_read_file():
-    file_name = "log.txt"
-    file_name_with_path = "test/" + file_name
+    file_that_does_not_exist = "random_file.txt"
+    file_that_exists = "test/log.txt"
     
     with pytest.raises(FileNotFoundError) as excinfo:
-        read_file(file_name)
+        read_file(file_that_does_not_exist)
 
-    file_content = read_file(file_name_with_path)
+    file_content = read_file(file_that_exists)
 
     assert "File does not exist!" in str(excinfo.value)
     assert file_content[0] == FIRST_ROW
