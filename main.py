@@ -27,15 +27,17 @@ def read_file(file_name):
 
 
 def main():
-    logs = read_file("log.txt")  # => [[],[],...,[]]
+    logs = read_file("log.txt")
 
-    tracker = Tracker(logs)
+    tracker = Tracker(logs, date_time_start=datetime(2019, 3, 1, 9, 0, 0), date_time_end=datetime(2019, 3, 2, 11, 59, 59))
 
-    tracker.filter_rows_by_date_range()
+    date_time_parsed_log = tracker.filter_rows_by_date_range()
 
-    tracker.calculate_page_views()
+    tracker.calculate_page_views(date_time_parsed_log)
 
-    tracker.calculate_unique_visits()
+    tracker.calculate_unique_visits(date_time_parsed_log)
+
+    tracker.make_report()
 
 
 if __name__ == "__main__":
