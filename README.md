@@ -29,6 +29,8 @@ The program runs as a command line tool which requires the start and end dates o
 The following command will start the program: 
 * PYTHONPATH=./src python3 main.py --startdate "YYYY-MM-DD HH:MM:SS" --enddate "YYYY-MM-DD HH:MM:SS" --filepath <file_path>
 
+Example: PYTHONPATH=./src python3 main.py --startdate "2019-03-01 09:00:00" --enddate "2019-03-02 11:59:59" --filepath "test/log.txt"
+
 ## Test
 To run all the tests in the test folder, write the following command:
 * PYTHONPATH=./src pytest test/
