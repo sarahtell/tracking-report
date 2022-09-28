@@ -16,11 +16,11 @@ def main():
         date_time_end,
     )
 
-    date_time_parsed_log = report_manager.filter_rows_by_date_range()
+    report_manager.filter_rows_by_date_range()
 
-    report_manager.calculate_page_views(date_time_parsed_log)
+    report_manager.calculate_page_views()
 
-    report_manager.calculate_unique_visits(date_time_parsed_log)
+    report_manager.calculate_unique_visits()
 
     report_manager.make_report()
 

@@ -16,7 +16,7 @@ def test_validate_date_input(capsys):
 
     with pytest.raises(SystemExit):
         validate_date_input(nonvalid_startdate, nonvalid_enddate)
-    
+
     out = capsys.readouterr()
 
     assert 'Date should have the correct format: "YYYY-MM-DD HH:MM:SS"' in out.out

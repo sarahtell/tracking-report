@@ -17,32 +17,32 @@ FIRST_ROW = [
 
 
 FINAL_ROW = [
-        datetime.strptime("2019-03-02 11:00:00UTC", "%Y-%m-%d %H:%M:%S%Z"),
-        "/contact.html",
-        "12348"
-    ]
+    datetime.strptime("2019-03-02 11:00:00UTC", "%Y-%m-%d %H:%M:%S%Z"),
+    "/contact.html",
+    "12348",
+]
 
 
 def test_filter_rows_by_date_range():
-    date_range = REPORT_MANAGER.filter_rows_by_date_range()
-    assert date_range[0] == FIRST_ROW
-    assert date_range[-1] == FINAL_ROW
+    REPORT_MANAGER.filter_rows_by_date_range()
+    assert REPORT_MANAGER.filtered_logs[0] == FIRST_ROW
+    assert REPORT_MANAGER.filtered_logs[-1] == FINAL_ROW
 
 
 def test_calculate_page_views():
-    page_views = REPORT_MANAGER.calculate_page_views(LOGS)
-    assert page_views == {
-        "/contact.html": {"page views": 5},
-        "/home.html": {"page views": 3},
+    REPORT_MANAGER.calculate_page_views()
+    assert REPORT_MANAGER.page_views == {
+        "/contact.html": {"page views": 3},
+        "/home.html": {"page views": 1},
     }
 
 
 def test_calculate_unique_visits():
-    unique_visits = REPORT_MANAGER.calculate_unique_visits(LOGS)
-    assert unique_visits == {
+    REPORT_MANAGER.calculate_unique_visits()
+    assert REPORT_MANAGER.visits == {
         "/contact.html": {
-            "visitors": ["12345", "12346", "12347", "12348"],
-            "visits": 4,
+            "visitors": ["12345", "12347", "12348"],
+            "visits": 3,
         },
-        "/home.html": {"visitors": ["12347", "12348", "12349"], "visits": 3},
+        "/home.html": {"visitors": ["12347"], "visits": 1},
     }

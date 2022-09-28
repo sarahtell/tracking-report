@@ -6,37 +6,30 @@ class ReportManager:
         self.logs = logs
         self.date_time_start = date_time_start
         self.date_time_end = date_time_end
-        self.date_time_parsed = []
+        self.filtered_logs = []
         self.page_views = {}
         self.visits = {}
-
 
     def filter_rows_by_date_range(self):
         for date_time, url, user_id in self.logs:
             if self.date_time_start <= date_time <= self.date_time_end:
-                self.date_time_parsed.append([date_time, url, user_id])
-        return self.date_time_parsed
+                self.filtered_logs.append([date_time, url, user_id])
 
-
-    def calculate_page_views(self, logs):
-        for _, url, _ in logs:
+    def calculate_page_views(self):
+        for _, url, _ in self.filtered_logs:
             if url not in self.page_views.keys():
                 self.page_views[url] = {"page views": 1}
             else:
                 self.page_views[url]["page views"] += 1
-        return self.page_views
 
-
-    def calculate_unique_visits(self, logs):
-        for _, url, user_id in logs:
+    def calculate_unique_visits(self):
+        for _, url, user_id in self.filtered_logs:
             if url not in self.visits.keys():
                 self.visits[url] = {"visitors": [user_id], "visits": 1}
             else:
                 if user_id not in self.visits[url]["visitors"]:
                     self.visits[url]["visitors"].append(user_id)
                     self.visits[url]["visits"] += 1
-        return self.visits
-
 
     def make_report(self):
         report_lists = []

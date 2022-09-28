@@ -41,7 +41,6 @@ def validate_date_input(startdate, enddate):
     return date_time_start, date_time_end
 
 
-
 def read_file(file_name):
     try:
         with open(file_name) as f:
