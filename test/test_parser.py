@@ -3,7 +3,7 @@ from datetime import datetime
 
 
 FIRST_ROW = [
-    datetime.strptime("2019-03-01 09:00:00", "%Y-%m-%d %H:%M:%S"),
+    datetime.strptime("2019-03-01 09:00:00UTC", "%Y-%m-%d %H:%M:%S%Z"),
     "/contact.html",
     "12345",
 ]
